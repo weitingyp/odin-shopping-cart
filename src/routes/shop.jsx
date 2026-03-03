@@ -16,7 +16,7 @@ export default function ShopPage() {
 						<div className="w-full h-60 overflow-hidden">
 							<img src={product.image} className="object-center object-cover" />
 						</div>
-						<div className="font-bold">${product.price}</div>
+						<div className="font-bold">${product.price.toFixed(2)}</div>
 						<div className="h-24 overflow-hidden overflow-ellipsis">
 							{product.title}
 						</div>
