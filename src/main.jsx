@@ -4,6 +4,6 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <h1>Hello world!</h1>
+    <h1 class="m-5 text-green-700">Hello world!</h1>
   </StrictMode>,
 )
