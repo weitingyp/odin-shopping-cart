@@ -1,10 +1,10 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useState } from "react";
 import { CartContext } from "../data";
 import Home from "./home";
 
 export default function Root() {
-	const cart = useContext(CartContext);
+	const [cart, setCart] = useState([]);
 	return (
 		<div id="container">
 			<nav className="width-full bg-teal-600 flex justify-center gap-5 py-5 text-white font-bold">
@@ -40,9 +40,9 @@ export default function Root() {
 				</NavLink>
 			</nav>
 			<div id="page" className="px-10">
-				<CartContext value={cart}>
+				<CartContext.Provider value={{ cart, setCart }}>
 					<Outlet />
-				</CartContext>
+				</CartContext.Provider>
 			</div>
 		</div>
 	);

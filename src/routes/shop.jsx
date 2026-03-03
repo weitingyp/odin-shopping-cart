@@ -1,7 +1,24 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { CartContext } from "../data";
 
 export default function ShopPage() {
 	const products = useLoaderData();
+	const { cart, setCart } = useContext(CartContext);
+
+	function updateCart(pdtId, qty) {
+		const newCart = cart.map((pdt) => {
+			if (pdt.id === pdtId) {
+				return { id: pdtId, qty };
+			}
+			return pdt;
+		});
+		if (!cart.some((pdt) => pdt.id === pdtId)) {
+			newCart.push({ id: pdtId, qty });
+		}
+		setCart(newCart);
+	}
+
 	return (
 		<div id="shop-page" className="">
 			<div className="py-10">
@@ -24,8 +41,11 @@ export default function ShopPage() {
 							<input
 								type="number"
 								name="qty"
-								value="0"
 								className="inline bg-slate-100 px-2"
+								value={cart.find((pdt) => pdt.id === product.id)?.qty || 0}
+								onChange={(e) =>
+									updateCart(product.id, parseInt(e.target.value))
+								}
 							></input>
 							<button
 								type="button"
