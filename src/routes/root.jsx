@@ -14,7 +14,9 @@ export default function Root() {
 					Cart
 				</a>
 			</nav>
-			<Outlet />
+			<div id="page" className="px-10">
+				<Outlet />
+			</div>
 		</div>
 	);
 }
