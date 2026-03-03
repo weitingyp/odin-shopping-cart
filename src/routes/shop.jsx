@@ -25,7 +25,7 @@ export default function ShopPage() {
 								type="number"
 								name="qty"
 								value="0"
-								className="inline"
+								className="inline bg-slate-100 px-2"
 							></input>
 							<button
 								type="button"
