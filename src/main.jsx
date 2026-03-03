@@ -5,6 +5,7 @@ import Root from "./routes/root.jsx";
 import ErrorPage from "./error.jsx";
 import Home from "./routes/home.jsx";
 import ShopPage from "./routes/shop.jsx";
+import { productLoader } from "./data.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
 			{
 				path: "/shop",
 				element: <ShopPage />,
+				loader: productLoader,
 			},
 		],
 	},

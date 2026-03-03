@@ -1,17 +1,7 @@
-import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 
 export default function ShopPage() {
-	const [products, setProducts] = useState([]);
-
-	useEffect(() => {
-		(async () => {
-			const response = await fetch("https://fakestoreapi.com/products");
-			const data = await response.json();
-			setProducts(data);
-			console.log(data);
-		})();
-	}, []);
-
+	const products = useLoaderData();
 	return (
 		<div id="shop-page" className="">
 			<div className="py-10">
