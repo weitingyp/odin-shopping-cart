@@ -19,6 +19,26 @@ export default function ShopPage() {
 		setCart(newCart);
 	}
 
+	function incrementQty(pdtId) {
+		const newCart = cart.map((pdt) => {
+			if (pdt.id === pdtId) return { ...pdt, qty: ++pdt.qty };
+			return pdt;
+		});
+		if (!cart.some((pdt) => pdt.id === pdtId))
+			newCart.push({ id: pdtId, qty: 1 });
+		setCart(newCart);
+	}
+
+	function decrementQty(pdtId) {
+		const newCart = cart
+			.map((pdt) => {
+				if (pdt.id === pdtId) return { ...pdt, qty: --pdt.qty };
+				return pdt;
+			})
+			.filter((pdt) => pdt.qty > 0);
+		setCart(newCart);
+	}
+
 	return (
 		<div id="shop-page" className="">
 			<div className="py-10">
@@ -50,12 +70,14 @@ export default function ShopPage() {
 							<button
 								type="button"
 								className="px-2 rounded-sm bg-teal-600 text-white hover:bg-teal-700"
+								onClick={() => incrementQty(product.id)}
 							>
 								+
 							</button>
 							<button
 								type="button"
 								className="px-2 rounded-sm bg-red-600 text-white hover:bg-red-700"
+								onClick={() => decrementQty(product.id)}
 							>
 								-
 							</button>
