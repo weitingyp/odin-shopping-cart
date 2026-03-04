@@ -1,16 +1,22 @@
-# React + Vite
+# Shopping Cart Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Summary
 
-Currently, two official plugins are available:
+This is a single page application with made with React. Users can:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Navigate across Home, Shop, Cart pages
+- Add items to cart on the Shop page
+- Increment/decrement quantities of items on Shop and Cart pages
+- Review their total bill on the Cart Page (checkout button is a dummy button)
 
-## React Compiler
+## What I learnt
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React and React Router was used
+- When to use context vs state (prop drilling): I chose to use context for cart as a shopping app may require it to persist for each user as the app grows. State can be used for simple applications, but once prop has to be drilled beyond 2 levels, context is easier to manage.
+- When to use React Router's loader vs React's useEffect: loader ensures that data is ready before components are rendered. This can be helpful when multiple components require the same data. useEffect can be used for simpler applications where the data is not needed before the component is rendered (although a re-render is done if a state is updated). In this application, I used a loader to fetch items from FakeStore API as the product database data is used across both Shop and Cart page. For future expansions, I'd query a database instead.
 
-## Expanding the ESLint configuration
+## Future steps
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Add a link to a checkout page to simulate it
+- Persist cart with browser cookies
+- Add user login/logout
