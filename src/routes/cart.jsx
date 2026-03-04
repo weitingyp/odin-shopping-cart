@@ -13,6 +13,17 @@ export default function CartPage() {
 				}, 0)
 			: 0;
 	const shippingCost = 0;
+
+	function handleQtyChange(pdtId, val) {
+		let newCart = cart
+			.map((pdt) => {
+				if (pdt.id === pdtId) return { ...pdt, qty: val };
+				return pdt;
+			})
+			.filter((pdt) => pdt.qty > 0);
+		setCart(newCart);
+	}
+
 	return (
 		<div id="cart-page" className="">
 			<div className="py-10">
@@ -57,7 +68,19 @@ export default function CartPage() {
 											${pdtInfo.price}
 										</div>
 										<div className="border border-1/2 border-solid border-slate-300 p-2">
-											{pdt.qty}
+											<select
+												value={pdt.qty}
+												onChange={(e) =>
+													handleQtyChange(pdtInfo.id, e.target.value)
+												}
+												className="bg-slate-100"
+											>
+												{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((qtyOption) => (
+													<option key={qtyOption} value={qtyOption}>
+														{qtyOption}
+													</option>
+												))}
+											</select>
 										</div>
 										<div className="border border-1/2 border-solid border-slate-300 p-2">
 											${pdtInfo.price * pdt.qty}
